@@ -87,6 +87,34 @@ nav {
   color: var(--text);
 }
 
+/* ── Hero photo wrapper (full-bleed background) ──────────── */
+.hero-wrap {
+  position: relative;
+  overflow: hidden;
+  /* The leaf photo — dark moody green, brightened via the overlay below */
+  background: url('../images/hero-bg.jpg') center 40% / cover no-repeat;
+}
+
+/* Gradient overlay: opaque white on text left, barely-there veil on photo right */
+.hero-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.97) 0%,
+    rgba(255, 255, 255, 0.92) 38%,
+    rgba(255, 255, 255, 0.48) 62%,
+    rgba(255, 255, 255, 0.12) 100%
+  );
+  z-index: 1;
+}
+
+.hero-wrap .container {
+  position: relative;
+  z-index: 2;
+}
+
 /* ── Hero (home) ─────────────────────────────────────────── */
 .hero {
   padding: 7rem 0 6rem;
@@ -96,9 +124,10 @@ nav {
   align-items: center;
 }
 
+/* SVG illustration: more visible now that the photo shows behind it */
 .hero-art {
   color: var(--accent);
-  opacity: 0.14;
+  opacity: 0.22;
   width: 100%;
   max-width: 420px;
   justify-self: end;
@@ -107,6 +136,9 @@ nav {
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
   .hero-art { display: none; }
+  .hero-wrap::before {
+    background: rgba(255, 255, 255, 0.92);
+  }
 }
 
 .hero-kicker {
